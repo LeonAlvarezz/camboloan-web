@@ -25,13 +25,12 @@ export const getAllAdmins = async () => {
 };
 
 export const getMe = async () => {
-  return await useFetch("/api/auth/me");
+  const res = await useFetch("/api/auth/me");
+  return res;
 };
 
 export const adminLogout = async () => {
-  return await useAsyncData(async () => {
-    return await $fetch("/api/auth/logout", {
-      method: "POST",
-    });
+  return $fetch("/api/auth/logout", {
+    method: "POST",
   });
 };

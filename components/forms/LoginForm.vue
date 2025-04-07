@@ -81,11 +81,13 @@ const resolver = zodResolver(LoginSchema);
 const onFormSubmit = async ({ valid, values }: FormSubmitEvent) => {
   const formValues = values as Login;
   if (valid) {
-    const data = await adminLogin(formValues);
-    if (!data) {
+    const { error } = await adminLogin(formValues);
+    console.log("error:", error);
+    if (error) {
       toast.add({
         severity: "error",
-        summary: "Login Failed",
+        summary: error.error,
+        detail: error.message,
         life: 3000,
       });
       return;
