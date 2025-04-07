@@ -10,6 +10,9 @@ export const useApi: useFetchType = (path, options = {}) => {
   options.baseURL = config.public.api_url;
   return useFetch(path, {
     ...options,
+    headers: {
+      credential: "true",
+    },
     transform: (res: { data: unknown }): unknown => {
       // Handle different response structures
       return res?.data || res;

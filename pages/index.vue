@@ -6,24 +6,9 @@
         <LoginForm />
       </template>
     </Card>
-
-    <Card>
-      <template #title>Admin List</template>
-      <template #content>
-        <div v-for="admin in admins" :key="admin.id">
-          <p>{{ admin.username }}</p>
-        </div>
-      </template>
-    </Card>
   </main>
 </template>
 
-<script setup lang="ts">
-import { getAllAdmins } from "~/api/admin";
-import type { AdminDto } from "~/generated";
-const admins = ref<AdminDto[]>([]);
-const { data } = await getAllAdmins();
-admins.value = data.value || [];
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>

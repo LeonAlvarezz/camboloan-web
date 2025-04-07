@@ -1,5 +1,5 @@
 import type { Login } from "~/dto/auth.type";
-import type { AdminDto, AuthenticatedAdminDto, AuthJwt } from "~/generated";
+import type { AdminDto } from "~/generated";
 
 // export const adminLogin = async (payload: Login) => {
 //   const data = await fetchApi.post<AuthJwt>("/admins/login", payload);
@@ -7,14 +7,14 @@ import type { AdminDto, AuthenticatedAdminDto, AuthJwt } from "~/generated";
 // };
 
 export const adminLogin = async (payload: Login) => {
-  const data = await useApi<AuthenticatedAdminDto>("/admins/login", {
-    method: "POST",
+  return await $fetch("/api/auth/login", {
     body: {
-      ...payload,
-      otp: Number(payload.otp),
+      email: payload.email,
+      password: payload.password,
+      otp: payload.otp,
     },
+    method: "POST",
   });
-  return data;
 };
 
 export const getAllAdmins = async () => {
@@ -25,8 +25,13 @@ export const getAllAdmins = async () => {
 };
 
 export const getMe = async () => {
-  const data = await useApi<AuthJwt>("/admins/me", {
-    key: "admin-auth",
+  return await useFetch("/api/auth/me");
+};
+
+export const adminLogout = async () => {
+  return await useAsyncData(async () => {
+    return await $fetch("/api/auth/logout", {
+      method: "POST",
+    });
   });
-  return data;
 };

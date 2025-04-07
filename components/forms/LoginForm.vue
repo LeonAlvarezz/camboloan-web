@@ -75,20 +75,19 @@ import { adminLogin } from "~/api/admin";
 import { LoginSchema, type Login } from "~/dto/auth.type";
 
 const toast = useToast();
-
+const router = useRouter();
 const resolver = zodResolver(LoginSchema);
 
 const onFormSubmit = async ({ valid, values }: FormSubmitEvent) => {
   const formValues = values as Login;
   if (valid) {
-    const { data, error } = await adminLogin(formValues);
-    if (!data.value || error.value) {
+    const data = await adminLogin(formValues);
+    if (!data) {
       toast.add({
         severity: "error",
         summary: "Login Failed",
         life: 3000,
       });
-      console.log(error.value);
       return;
     }
     toast.add({
@@ -96,7 +95,7 @@ const onFormSubmit = async ({ valid, values }: FormSubmitEvent) => {
       summary: "Login Success",
       life: 3000,
     });
-    setAccessToken(data.value.access_token);
+    router.push("/admin");
   }
 };
 </script>
