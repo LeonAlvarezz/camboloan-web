@@ -7,7 +7,7 @@ import type { AdminDto } from "~/generated";
 // };
 
 export const adminLogin = async (payload: Login) => {
-  return await $fetch("/api/auth/login", {
+  return await $fetch("/api/admin/auth/login", {
     body: {
       email: payload.email,
       password: payload.password,
@@ -25,12 +25,12 @@ export const getAllAdmins = async () => {
 };
 
 export const getMe = async () => {
-  const res = await useFetch("/api/auth/me");
+  const res = await useFetch("/api/admin/auth/me");
   return res;
 };
 
 export const adminLogout = async () => {
-  return $fetch("/api/auth/logout", {
+  return $fetch("/api/admin/auth/logout", {
     method: "POST",
   });
 };

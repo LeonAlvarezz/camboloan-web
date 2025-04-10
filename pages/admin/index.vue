@@ -2,12 +2,30 @@
   <div class="flex justify-center items-center w-full min-h-dvh">
     <div class="flex flex-col gap-6">
       <div class="flex flex-col gap-2 items-center">
-        <p>You are Authenticated</p>
-        <p class="font-mono bg-neutral-300 px-4 py-1 rounded-lg">
-          {{ auth?.sub || "No Data" }}
-        </p>
+        <div v-if="auth">
+          <p>You are Authenticated</p>
+          <p
+            v-if="status === 'success'"
+            class="font-mono bg-neutral-300 px-4 py-1 rounded-lg"
+          >
+            {{ auth.sub }}
+          </p>
+          <Skeleton
+            v-else-if="status === 'pending'"
+            class="w-full bg-neutral-400! h-10!"
+          />
+          <p v-else class="font-mono bg-red-700 px-4 py-1 rounded-lg">
+            Something went wrong!
+          </p>
+        </div>
+        <div v-else>
+          <p>You are not Authenticated</p>
+        </div>
       </div>
-      <Button severity="danger" @click="onLogout">Logout</Button>
+      <Button v-if="auth" severity="danger" @click="onLogout">Logout</Button>
+      <Button v-else severity="danger" @click="() => router.push('/')"
+        >Go to Login</Button
+      >
     </div>
   </div>
 </template>
@@ -19,7 +37,7 @@ import type { AuthJwt } from "~/generated";
 // const { data } = await getMe();
 const toast = useToast();
 const auth = ref<AuthJwt>();
-const { data } = await getMe();
+const { data, status } = await getMe();
 if (data.value && data.value.data) {
   auth.value = data.value.data;
 }
@@ -29,7 +47,7 @@ const onLogout = async () => {
   if (error) {
     toast.add({
       severity: "error",
-      summary: error.error,
+      summary: "Logout Failed",
       detail: error.message,
       life: 3000,
     });

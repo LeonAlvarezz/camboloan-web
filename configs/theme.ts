@@ -6,16 +6,20 @@ const AppTheme = definePreset(Aura, {
     colorScheme: {
       light: {
         primary: {
-          color: "hsl(359, 100%, 63%)",
+          color: "var(--color-primary)",
           inverseColor: "#fff",
-          hoverColor: "hsl(359, 100%, 53%)",
-          activeColor: "hsl(359, 100%, 43%)",
+          hoverColor: "hsl(from var(--color-primary) h s l / 0.8)", // 80% opacity
+          activeColor: "hsl(from var(--color-primary) h s l / 0.9)", // 50% opacity
+          borderColor: "var(--color-primary)",
+          focusBorderColor: "hsl(from var(--color-primary) h s l / 0.8)", // 80% opacity
+          hoverBorderColor: "hsl(from var(--color-primary) h s l / 0.9)", // 80% opacity
         },
-        highlight: {
-          background: "{red.300}",
-          focusBackground: "{red.200}",
-          color: "{red.300}",
-          focusColor: "{red.300}",
+        semantic: {
+          primary: {
+            50: "hsl(from var(--color-primary) h s l / 0.2)",
+            100: "hsl(from var(--color-primary) h s l / 0.7)",
+            200: "hsl(from var(--color-primary) h s l / 0.75)",
+          },
         },
       },
     },

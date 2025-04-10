@@ -1,7 +1,7 @@
 // login.post.ts
 import type { Admin } from "~/types/admin.type";
-import { serverApi } from "../utils/serverApi";
 import type { AuthAccessToken } from "~/generated";
+import { serverApi } from "~/utils/serverApi";
 
 export default defineEventHandler(async (event) => {
   const api = serverApi(event);

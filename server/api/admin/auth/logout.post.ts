@@ -1,4 +1,4 @@
-import { serverApi } from "../utils/serverApi";
+import { serverApi } from "~/utils/serverApi";
 
 export default defineEventHandler(async (event) => {
   const api = serverApi(event);

@@ -5,11 +5,12 @@
 
 
 @theme {
-    --text-xxs: 0.65rem;
+    --text-2xs: 0.65rem;
     --color-background: hsl(0, 0%, 90%);
     --color-color: hsl(0, 0%, 15%);
-    --color-primary: hsl(359, 100%, 63%);
-    --color-subtitle: hsl(0, 0%, 70%);
+    --color-primary: hsl(222, 69%, 36%);
+    --color-foreground: hsl(0, 0%, 90%);
+    --color-subtitle: hsl(0, 0%, 40%);
     --color-muted: hsl(0, 0%, 15%);
 }
 
