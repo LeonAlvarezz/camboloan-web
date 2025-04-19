@@ -15,9 +15,9 @@
           )
         "
       >
-        <a :href="item.url">
+        <NuxtLink :to="item.url">
           {{ item.title }}
-        </a>
+        </NuxtLink>
       </li>
     </ul>
   </nav>

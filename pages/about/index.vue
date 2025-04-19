@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <AppBar />
-    <slot />
-    <Footer />
-  </div>
+  <div>about</div>
 </template>
 
 <script setup lang="ts"></script>

@@ -20,6 +20,10 @@ const AppTheme = definePreset(Aura, {
             100: "hsl(from var(--color-primary) h s l / 0.7)",
             200: "hsl(from var(--color-primary) h s l / 0.75)",
           },
+          content: {
+            background: "var(--color-content-background)",
+            borderColor: "var(--color-content-border)",
+          },
         },
       },
     },

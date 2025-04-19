@@ -11,3 +11,24 @@ input:-webkit-autofill:focus {
 ::selection {
     background: var(--color-subtitle);
 }
+
+.marquee {
+    display: flex;
+    gap: 4rem;
+    animation: marquee-to-left 5s infinite linear;
+}
+
+.marquee img {
+    display: flex;
+    justify-content: space-around;
+}
+
+@keyframes marquee-to-left {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(-100% - 14rem));
+    }
+}

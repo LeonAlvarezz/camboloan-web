@@ -1,4 +1,4 @@
 export const isActiveRoute = (path: string) => {
   const route = useRoute();
-  return route.fullPath.startsWith(path);
+  return route.fullPath === path;
 };

@@ -9,9 +9,12 @@
     --color-background: hsl(0, 0%, 90%);
     --color-color: hsl(0, 0%, 15%);
     --color-primary: hsl(222, 69%, 36%);
+    --color-primary-subtitle: hsl(222, 70%, 82%);
     --color-foreground: hsl(0, 0%, 90%);
     --color-subtitle: hsl(0, 0%, 40%);
     --color-muted: hsl(0, 0%, 15%);
+    --color-content-background: oklch(92% 0.004 286.32);
+    --color-content-border: oklch(70.5% 0.015 286.067);
 }
 
 :root {

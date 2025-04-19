@@ -50,13 +50,13 @@ const banks: Bank[] = [
     carLoan: 10,
     homeLoan: 6.99,
     name: "KB Prac Bank",
-    image: "/image/bank/ppc.png",
+    image: "/image/bank/kb-prasac.png",
   },
   {
     carLoan: 10,
     homeLoan: 6.99,
     name: "Philip Bank",
-    image: "/image/bank/ppc.png",
+    image: "/image/bank/philip.png",
   },
   {
     carLoan: 10,
@@ -80,13 +80,13 @@ const banks: Bank[] = [
     carLoan: 10,
     homeLoan: 6.99,
     name: "Shinhan Bank",
-    image: "/image/bank/ppc.png",
+    image: "/image/bank/shinhan.png",
   },
   {
     carLoan: 10,
     homeLoan: 6.99,
     name: "Canadia Bank",
-    image: "/image/bank/ppc.png",
+    image: "/image/bank/canadia.png",
   },
 ];
 const bankRef = ref<Bank[]>(banks);
