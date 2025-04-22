@@ -14,6 +14,11 @@ const AppTheme = definePreset(Aura, {
           focusBorderColor: "hsl(from var(--color-primary) h s l / 0.8)", // 80% opacity
           hoverBorderColor: "hsl(from var(--color-primary) h s l / 0.9)", // 80% opacity
         },
+        highlight: {
+          color: "var(--color-color)",
+          // focusBackgroundColor: "var(--color-)"
+          focusColor: "var(--color-foreground)",
+        },
         semantic: {
           primary: {
             50: "hsl(from var(--color-primary) h s l / 0.2)",

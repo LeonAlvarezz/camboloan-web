@@ -1,5 +1,5 @@
 <template>
-  <section class="min-h-dvh flex flex-col gap-10 justify-center w-full pt-20">
+  <section class="min-h-dvh flex flex-col gap-10 justify-center w-full py-20">
     <!-- <h1 class="text-2xl font-bold capitalize text-center">
       Get all the best car loan and house loan with our best feature
     </h1>
