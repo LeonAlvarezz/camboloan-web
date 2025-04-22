@@ -7,17 +7,8 @@
       <div>
         <h2 class="text-primary-subtitle">Sitemap</h2>
         <ul class="mt-2 text-white flex flex-col gap-1">
-          <li>
-            <NuxtLink>Home</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink>Calculator</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink>Table</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink>About</NuxtLink>
+          <li v-for="item of navItems" :key="item.title">
+            <NuxtLink :to="item.url">{{ item.title }}</NuxtLink>
           </li>
         </ul>
       </div>
@@ -58,6 +49,25 @@
   </footer>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const navItems = [
+  {
+    title: "Home",
+    url: "/",
+  },
+  {
+    title: "Calculator",
+    url: "/calculator",
+  },
+  {
+    title: "Table",
+    url: "/table",
+  },
+  {
+    title: "About",
+    url: "/about",
+  },
+];
+</script>
 
 <style scoped></style>

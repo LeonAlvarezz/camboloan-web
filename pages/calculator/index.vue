@@ -1,17 +1,24 @@
 <template>
   <main class="min-h-[calc(100dvh-3.5rem)] global-p flex items-center w-full">
     <Card class="w-full py-10 px-4">
+      <template #header>
+        <h1 class="text-2xl font-bold capitalize px-4">Loan Calculator</h1>
+      </template>
       <template #content>
-        <div class="w-full flex flex-col gap-4">
+        <Form class="w-full flex flex-col gap-4" :resolver="resolver">
           <div class="justify-between flex">
-            <div class="flex flex-col gap-1">
+            <FormField
+              name="loan_type"
+              initial-value=""
+              class="flex flex-col gap-1"
+            >
               <label>Loan Type</label>
               <SelectButton
                 v-model="loanType"
                 :options="loanTypeOptions"
                 disabled
               />
-            </div>
+            </FormField>
             <div v-if="loanType === 'Car Loan'" class="flex flex-col gap-1">
               <label>Car Loan Type</label>
               <SelectButton
@@ -64,7 +71,12 @@
             >
           </div>
 
-          <div class="flex flex-col gap-1">
+          <FormField
+            v-slot="$field"
+            name="amount"
+            :initial-value="1000"
+            class="flex flex-col gap-1"
+          >
             <label>Loan Amount</label>
             <div>
               <InputNumber
@@ -73,18 +85,44 @@
                 mode="currency"
                 currency="USD"
                 locale="en-US"
-                :maxFractionDigits="10"
+                :min="1000"
+                :max="MAX_AMOUNT"
               />
               <Slider v-model="amount" :max="MAX_AMOUNT" />
+              <Message
+                v-if="$field.invalid"
+                severity="error"
+                size="small"
+                variant="simple"
+                >{{ $field.error?.message }}</Message
+              >
             </div>
-          </div>
-          <div class="flex flex-col gap-1">
+          </FormField>
+          <FormField
+            v-slot="$field"
+            name="period"
+            :initial-value="12"
+            class="flex flex-col gap-1"
+          >
             <label>Loan Period</label>
             <div>
-              <InputNumber v-model="period" class="w-full" suffix=" months" />
+              <InputNumber
+                v-model="period"
+                class="w-full"
+                suffix=" months"
+                :min="12"
+                :max="96"
+              />
               <Slider v-model="period" :step="12" :max="96" />
+              <Message
+                v-if="$field.invalid"
+                severity="error"
+                size="small"
+                variant="simple"
+                >{{ $field.error?.message }}</Message
+              >
             </div>
-          </div>
+          </FormField>
           <div class="flex justify-between mt-10 h-full items-center">
             <div class="flex flex-col gap-4 items-start">
               <p class="text-xl">Estimated per month</p>
@@ -118,13 +156,16 @@
               </div>
             </div>
           </div>
-        </div>
+          <!-- <Button type="submit">Save</Button> -->
+        </Form>
       </template>
     </Card>
   </main>
 </template>
 
 <script setup lang="ts">
+import { zodResolver } from "@primevue/forms/resolvers/zod";
+import { z } from "zod";
 import { supportedBanks } from "~/constant/bank";
 
 const loanTypeOptions = ["Car Loan", "House Loan"];
@@ -133,16 +174,29 @@ const carLoanOptions = ["Brand New", "Second Hand"];
 const loanType = ref("Car Loan");
 const carLoanType = ref("Brand New");
 const MAX_AMOUNT = 100000;
+const amount = ref(1000);
+const period = ref(12);
 
 const banks = supportedBanks.map((bank) => ({
   name: bank.name,
   icon: bank.image,
 }));
 
+const resolver = zodResolver(
+  z.object({
+    amount: z
+      .number()
+      .min(1, "Amount must not be less than 1000")
+      .max(MAX_AMOUNT, `Amount must not exceed ${MAX_AMOUNT}`),
+    period: z
+      .number()
+      .min(12, "Period must not be less than 12 months")
+      .max(96, "Period must not exceed 96 months"),
+  })
+);
+
 const selectedBanks = ref();
 
-const period = ref(12);
-const amount = ref(1000);
 const annualRate = ref(0.09);
 const downPaymentRate = ref(0);
 
@@ -184,6 +238,11 @@ const totalInterestPaid = computed(() => {
 const grandTotalPaid = computed(() => {
   return totalPaid.value + downPayment.value;
 });
+
+// Save calculation for comparison feature
+// const onSubmit = ({ values }: FormSubmitEvent) => {
+//   console.log("values:", values);
+// };
 
 /**
  * Bank to have value like rate, max, period

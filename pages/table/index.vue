@@ -1,6 +1,6 @@
 <template>
   <main class="min-h-[calc(100dvh-3.5rem)] global-p flex items-center w-full">
-    About
+    Table
   </main>
 </template>
 
