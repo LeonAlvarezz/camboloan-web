@@ -35,5 +35,8 @@
   "devDependencies": {
     "@primevue/nuxt-module": "^4.3.3",
     "openapi-typescript-codegen": "^0.29.0"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.6.1"
   }
 }
