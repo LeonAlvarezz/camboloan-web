@@ -9,9 +9,8 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { AdminDto } from './models/AdminDto';
 export type { ApiResponse } from './models/ApiResponse';
-export type { AuthAccessToken } from './models/AuthAccessToken';
 export type { AuthenticatedAdminDto } from './models/AuthenticatedAdminDto';
-export type { AuthJwt } from './models/AuthJwt';
+export type { AuthResponse } from './models/AuthResponse';
 export type { Login } from './models/Login';
 export type { Signup } from './models/Signup';
 

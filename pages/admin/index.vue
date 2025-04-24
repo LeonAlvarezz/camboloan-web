@@ -23,7 +23,10 @@
         </div>
       </div>
       <Button v-if="auth" severity="danger" @click="onLogout">Logout</Button>
-      <Button v-else severity="danger" @click="() => router.push('/')"
+      <Button
+        v-else
+        severity="danger"
+        @click="() => router.push('/admin/login')"
         >Go to Login</Button
       >
     </div>
@@ -32,11 +35,11 @@
 
 <script setup lang="ts">
 import { adminLogout, getMe } from "~/api/admin";
-import type { AuthJwt } from "~/generated";
+import type { AuthResponse } from "~/generated";
 // const auth = ref<AuthJwt | null>(null);
 // const { data } = await getMe();
 const toast = useToast();
-const auth = ref<AuthJwt>();
+const auth = ref<AuthResponse>();
 const { data, status } = await getMe();
 if (data.value && data.value.data) {
   auth.value = data.value.data;
@@ -53,7 +56,7 @@ const onLogout = async () => {
     });
     return;
   }
-  router.push("/");
+  router.push("/admin/login");
 };
 </script>
 

@@ -65,15 +65,4 @@ export class AdminService {
             mediaType: 'application/json',
         });
     }
-    /**
-     * Admin Refresh Token
-     * @returns any
-     * @throws ApiError
-     */
-    public static adminControllerRefreshV1(): CancelablePromise<ApiResponse> {
-        return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v1/admins/refresh',
-        });
-    }
 }

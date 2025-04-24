@@ -4,11 +4,10 @@ import Client from "~/utils/fetch-client";
 // server composable for calling the external API through Nitro Server
 export const serverApi = (event: H3Event) => {
   const apiUrl = useRuntimeConfig().public.api_url;
-  const accessToken = getCookie(event, "access_token");
-  console.log("accessToken:", accessToken);
+  const admin_cookie = getCookie(event, "admin_cookie");
   const client = new Client(apiUrl as string, {
     headers: {
-      Cookie: `access_token=${accessToken}`,
+      Cookie: `admin_cookie=${admin_cookie}`,
     } as HeadersInit,
   });
 

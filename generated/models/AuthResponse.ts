@@ -2,7 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type AuthAccessToken = {
-    access_token: string;
+export type AuthResponse = {
+    sub: string | null;
+    auth_id: string;
 };
 

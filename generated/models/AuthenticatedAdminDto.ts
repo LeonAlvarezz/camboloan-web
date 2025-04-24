@@ -3,6 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export type AuthenticatedAdminDto = {
-    access_token: string;
+    token: string;
 };
 
